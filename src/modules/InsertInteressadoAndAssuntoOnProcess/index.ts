@@ -1,0 +1,6 @@
+import { InsertInteressadoAndAssuntoOnProcessController } from "./InsertInteressadoAndAssuntoOnProcessController";
+import { InsertInteressadoAndAssuntoOnProcessUseCase } from "./InsertInteressadoAndAssuntoOnProcessUseCase";
+
+export const insertInteressadoAndAssuntoOnProcessUseCase = new InsertInteressadoAndAssuntoOnProcessUseCase();
+export const insertInteressadoAndAssuntoOnProcessController = new InsertInteressadoAndAssuntoOnProcessController(insertInteressadoAndAssuntoOnProcessUseCase);
+
