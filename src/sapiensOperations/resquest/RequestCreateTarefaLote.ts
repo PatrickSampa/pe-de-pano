@@ -3,9 +3,9 @@ export class RequestCreateTarefa {
         const createTarefaLote = `{
           "action": "SapiensAdministrativo_Tarefa",
           "method": "createTarefa",
-          "data": [
+          "data": 
             ${arrayProcessos}
-          ],
+          ,
           "type": "rpc",
           "tid": 87
         }`

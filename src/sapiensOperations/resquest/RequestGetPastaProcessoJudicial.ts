@@ -1,14 +1,18 @@
-export class RequestGetPasta {
-    async execute(nup: string): Promise<string> {
+export class RequestGetPastaProcessoJudicial {
+    async execute(numeroProcessoJudicial: string): Promise<string> {
         const getTarefa = `{
             "action":"SapiensAdministrativo_Pasta",
             "method":"getPasta",
             "data":[
                {
                   "fetch":[
+                    "setor",
+                    "setor.unidade",
+                    "processoJudicial"
                   ],
+                  "queryProcessoJudicial": 1,
                   "limit":10,
-                  "query":" ${nup} ",
+                  "query":" ${numeroProcessoJudicial} ",
                   "page":1,
                   "start":0
                }

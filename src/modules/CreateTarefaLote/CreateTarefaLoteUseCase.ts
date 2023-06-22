@@ -2,6 +2,7 @@ import { loginUseCase } from "../LoginUsuario";
 import { getUsuarioUseCase } from "../GetUsuario";
 import { CreateTarefaLoteDTO } from "../../DTO/CreateTarefaLoteDTO";
 import { getPastaUseCase } from "../GetPasta";
+import { getPastaProcessoJudicialUseCase } from "../GetPastaProcessoJudicial";
 
 
 export class CreateTarefaLoteUseCase {
@@ -13,11 +14,13 @@ export class CreateTarefaLoteUseCase {
             
             let response: Array<any> = [];
             
-            const listaNups = data.listaNups;
+            const listaProcessosJudiciais = data.listaProcessosJudiciais;
             
-            for (const nup of listaNups) {
+            for (const numeroProcessoJudicial of listaProcessosJudiciais) {
                 
-                const processo = await getPastaUseCase.execute(nup, cookie);
+                const processo = await getPastaProcessoJudicialUseCase.execute(numeroProcessoJudicial, cookie);
+                //const objetoTarefa = new TarefaDTO(processo[0].nup);
+                response.push(processo);
                 console.log(processo);
             }
 

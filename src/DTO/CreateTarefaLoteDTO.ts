@@ -7,5 +7,5 @@ export class CreateTarefaLoteDTO {
     setorResponsavel:string;
     prazoInicio?:string;
     prazoFim?:string;
-    listaNups:string[];
+    listaProcessosJudiciais:string[];
 }
