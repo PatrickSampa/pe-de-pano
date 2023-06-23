@@ -5,6 +5,7 @@ export class CreateTarefaLoteDTO {
     etiqueta?: string;
     especieTarefa:string;
     setorResponsavel:string;
+    setorOrigem:string;
     prazoInicio?:string;
     prazoFim?:string;
     listaProcessosJudiciais:string[];
