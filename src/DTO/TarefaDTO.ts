@@ -1,49 +1,48 @@
 export class TarefaDTO{
-    observacao: string = "";
-    postIt: string;
-    urgente: boolean = false;
-    dataHoraInicioPrazo: string;
-    criadoEm: null = null;
-    apagadoEm: null = null;
-    atualizadoEm: null = null;
-    dataHoraFinalPrazo: string;
-    dataHoraConclusaoPrazo: string = null;
-    pasta_id: string;
-    especieTarefa_id: string;
-    usuarioResponsavel_id: null = null;
-    setorResponsavel_id: string;
-    setorOrigem_id: string;
-    documento_id: string = "";
-    acompanhar: boolean = false;
-    tramitar: boolean = true;
-    arquivar: string = "";
-    usuarioConclusaoPrazo_id: string = "";
-    criadoPor_id: string = "";
-    atualizadoPor_id: string = "";
-    acompanhada: boolean = false;
-    comunicacaoJudicial_id: string = "";
-    movimentoNacional_id: string = "";
-    modalidadeRepercussao_id: string;
-    replicar: boolean = false;
-    migrarEtiqueta: boolean = false;
-    redistribuida: boolean = false;
-    distribuicaoAutomatica: boolean = true;
-    idFormatado: string = "";
+  execute(
+    postIt: string,
+    dataHoraInicioPrazo: string,
+    dataHoraFinalPrazo: string,
+    pasta_id: number,
+    especieTarefa_id: number,
+    setorOrigem_id: number,
+    setorResponsavel_id:number,
+    usuarioResponsavel_id: number,
+  ): string {
 
-    constructor(
-        postIt: string,
-        dataHoraInicioPrazo: string,
-        dataHoraFinalPrazo: string,
-        pasta_id: string,
-        especieTarefa_id: string,
-        setorOrigem_id: string,
-      ) {
-        this.postIt = postIt;
-        this.dataHoraInicioPrazo = dataHoraInicioPrazo;
-        this.dataHoraFinalPrazo = dataHoraFinalPrazo;
-        this.pasta_id = pasta_id;
-        this.especieTarefa_id = especieTarefa_id;
-        this.setorOrigem_id = setorOrigem_id;
-      }
+   const tarefa = `{
+      "observacao": "",
+      "postIt": "${postIt}",
+      "urgente": false,
+      "dataHoraInicioPrazo": "${dataHoraInicioPrazo}",
+      "criadoEm": null,
+      "apagadoEm": null,
+      "atualizadoEm": null,
+      "dataHoraFinalPrazo": "${dataHoraFinalPrazo}",
+      "dataHoraConclusaoPrazo": null,
+      "pasta_id": ${pasta_id},
+      "especieTarefa_id": ${especieTarefa_id},
+      "usuarioResponsavel_id": ${usuarioResponsavel_id},
+      "setorResponsavel_id": ${setorResponsavel_id},
+      "setorOrigem_id": ${setorOrigem_id},
+      "documento_id": "",
+      "acompanhar": false,
+      "tramitar": "",
+      "arquivar": "",
+      "usuarioConclusaoPrazo_id": "",
+      "criadoPor_id": "",
+      "atualizadoPor_id": "",
+      "acompanhada": false,
+      "comunicacaoJudicial_id": "",
+      "movimentoNacional_id": "",
+      "modalidadeRepercussao_id": "",
+      "replicar": false,
+      "migrarEtiqueta": false,
+      "redistribuida": false,
+      "distribuicaoAutomatica": true,
+      "idFormatado": ""
+    }`
+    return tarefa;
+  }
 
 }
