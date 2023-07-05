@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createTarefaLoteController } from "../modules/CreateTarefaLote";
+import { getUsuarioResponsavelController } from "../modules/GetUsuarioResponsavelTarefa";
 
 //const sessao = request.session();
 
@@ -34,5 +35,9 @@ export const routerInsertSapiensForPeDePano = Router();
 
 routerInsertSapiensForPeDePano.post("/insertTarefasLote", async (req, res) => {
     return createTarefaLoteController.handle(req, res);
+})
+
+routerInsertSapiensForPeDePano.get("/getUsuarioResponsavel", async (req, res) => {
+    return getUsuarioResponsavelController.handle(req, res);
 })
 
