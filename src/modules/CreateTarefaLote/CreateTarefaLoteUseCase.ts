@@ -48,6 +48,7 @@ export class CreateTarefaLoteUseCase {
             const requestCreateTarefaLote = new RequestCreateTarefaLote();
             const payload = await requestCreateTarefaLote.execute(listaTarefas);
             console.log(payload);
+            console.log('recebi a req do pace');
             
             const response = (await RequestSapiens(cookie, payload))
 

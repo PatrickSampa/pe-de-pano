@@ -4,18 +4,20 @@ import { RequestGetUsuarioResponsavelTarefa } from "../../sapiensOperations/resq
 import { loginUseCase } from "../LoginUsuario";
 
 export class GetUsuarioResponsavelTarefaUseCase {
-    constructor(private RequestGetUsuario:RequestGetUsuarioResponsavelTarefa){};
+    constructor(private requestGetUsuarioResponsavel:RequestGetUsuarioResponsavelTarefa){};
     async execute(data: GetUsuarioResponsavelTarefaDTO): Promise<any> {
 
-        let response:Array<any> = []
+        let response;
 
-        const getUsuario = await this.RequestGetUsuario.execute(data.query);
+        const getUsuario = await this.requestGetUsuarioResponsavel.execute(data.query, data.setorResponsavel);
+
+        console.log(getUsuario);
 
         const cookie:string = await loginUseCase.execute(data.login);
         
-        const ususario = (await RequestSapiens(cookie, getUsuario));
+        const usuario = (await RequestSapiens(cookie, getUsuario));
 
-        response.push(ususario);
+        response = usuario[0];
         
         return response;
     }

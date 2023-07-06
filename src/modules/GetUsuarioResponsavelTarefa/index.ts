@@ -1,8 +1,8 @@
 import { GetUsuarioResponsavelTarefaUseCase } from './GetUsuarioResponsavelTarefaUseCase';
 import { GetUsuarioResponsavelTarefaController } from './GetUsuarioResponsavelTarefaController';
-import { RequestGetUsuario } from '../../sapiensOperations/resquest/RequestGetUsuario';
+import { RequestGetUsuarioResponsavelTarefa } from '../../sapiensOperations/resquest/RequestGetUsuarioResponsavelTarefa';
 
-const requestGetUsuarioResponsavelTarefa = new RequestGetUsuario();
+const requestGetUsuarioResponsavelTarefa = new RequestGetUsuarioResponsavelTarefa();
 const getUsuarioResponsavelTarefaUseCase = new GetUsuarioResponsavelTarefaUseCase(requestGetUsuarioResponsavelTarefa);
 const getUsuarioResponsavelController = new GetUsuarioResponsavelTarefaController(getUsuarioResponsavelTarefaUseCase);
 

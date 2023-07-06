@@ -37,7 +37,7 @@ routerInsertSapiensForPeDePano.post("/insertTarefasLote", async (req, res) => {
     return createTarefaLoteController.handle(req, res);
 })
 
-routerInsertSapiensForPeDePano.get("/getUsuarioResponsavel", async (req, res) => {
+routerInsertSapiensForPeDePano.post("/getUsuarioResponsavel", async (req, res) => {
     return getUsuarioResponsavelController.handle(req, res);
 })
 
