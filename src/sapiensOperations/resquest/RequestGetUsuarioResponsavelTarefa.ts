@@ -12,10 +12,6 @@ export class RequestGetUsuarioResponsavelTarefa {
                 {
                   "property": "colaborador.lotacoes.setor",
                   "value": "eq:${setorResponsavel}"
-                },
-                {
-                  "property": "colaborador.lotacoes.distribuidor",
-                  "value": "eq:1"
                 }
               ],
               "query": "${query}",
@@ -25,7 +21,7 @@ export class RequestGetUsuarioResponsavelTarefa {
             }
           ],
           "type": "rpc",
-          "tid": 5
+          "tid": 4
         }`
         
         return getTarefa;
