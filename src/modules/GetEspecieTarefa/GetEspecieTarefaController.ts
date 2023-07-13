@@ -3,7 +3,7 @@ import { GetEspecieTarefaUseCase } from "./GetEspecieTarefaUseCase";
 import { GetEspecieTarefaDTO } from "../../DTO/GetEspecieTarefaDTO";
 
 
-export class CreateInteressadoController {
+export class GetEspecieTarefaController {
     constructor(private GetEspecieTarefaUseCase: GetEspecieTarefaUseCase) { }
     async handle(request: Request, response: Response): Promise<Response> {
         const data: GetEspecieTarefaDTO = request.body;

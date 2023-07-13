@@ -1,5 +1,5 @@
 export class RequestGetEspecieTarefa {
-    async execute(page:string): Promise<string> {
+    async execute(query:string): Promise<string> {
         const getEspecieTarefa = `{
             "action": "SapiensAdministrativo_EspecieTarefa",
             "method": "getEspecieTarefa",
@@ -8,8 +8,8 @@ export class RequestGetEspecieTarefa {
                 "fetch": [
                   "generoTarefa"
                 ],
-                "query": "",
-                "page": ${page},
+                "query": "${query}",
+                "page": "1",
                 "start": 150,
                 "limit": 25
               }

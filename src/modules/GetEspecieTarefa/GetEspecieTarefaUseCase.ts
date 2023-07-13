@@ -9,11 +9,13 @@ export class GetEspecieTarefaUseCase {
 
         const cookie:string = await loginUseCase.execute(data.login);
 
-        const playload = await this.RequestGetEspecieTarefa.execute(data.page);
+        const playload = await this.RequestGetEspecieTarefa.execute(data.query);
         
         let response = (await RequestSapiens(cookie, playload));
 
         response = response.map(({id,nome}) => ({id,nome}));
+
+        console.log(response);
     
         return response;
     }
