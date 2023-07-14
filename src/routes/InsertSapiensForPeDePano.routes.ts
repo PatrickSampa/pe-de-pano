@@ -2,6 +2,7 @@ import { Router } from "express";
 import { createTarefaLoteController } from "../modules/CreateTarefaLote";
 import { getUsuarioResponsavelController } from "../modules/GetUsuarioResponsavelTarefa";
 import { getEspecieTarefaController } from "../modules/GetEspecieTarefa";
+import { getSetorResponsavelTarefaController } from "../modules/GetSetorResponsavelTarefa";
 
 //const sessao = request.session();
 
@@ -44,5 +45,9 @@ routerInsertSapiensForPeDePano.post("/getUsuarioResponsavel", async (req, res) =
 
 routerInsertSapiensForPeDePano.post("/getEspecieTarefa", async (req, res) => {
     return getEspecieTarefaController.handle(req, res);
+});
+
+routerInsertSapiensForPeDePano.get("/getSetorResponsavelTarefa", async (req, res) => {
+    return getSetorResponsavelTarefaController.handle(req, res);
 });
 
