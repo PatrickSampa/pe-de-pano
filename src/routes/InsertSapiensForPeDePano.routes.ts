@@ -47,7 +47,7 @@ routerInsertSapiensForPeDePano.post("/getEspecieTarefa", async (req, res) => {
     return getEspecieTarefaController.handle(req, res);
 });
 
-routerInsertSapiensForPeDePano.get("/getSetorResponsavelTarefa", async (req, res) => {
+routerInsertSapiensForPeDePano.post("/getSetorResponsavelTarefa", async (req, res) => {
     return getSetorResponsavelTarefaController.handle(req, res);
 });
 
