@@ -1,7 +1,6 @@
 import { loginUseCase } from "../LoginUsuario";
 import { getUsuarioUseCase } from "../GetUsuario";
 import { CreateTarefaLoteDTO } from "../../DTO/CreateTarefaLoteDTO";
-import { getPastaUseCase } from "../GetPasta";
 import { getPastaProcessoJudicialUseCase } from "../GetPastaProcessoJudicial";
 import { TarefaDTO } from "../../DTO/TarefaDTO";
 import { RequestCreateTarefaLote } from "../../sapiensOperations/resquest/RequestCreateTarefaLote";

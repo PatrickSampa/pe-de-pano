@@ -1,6 +1,5 @@
 import { Router } from "express";
 import {filtroAudienciasPaceController} from "../modules/FiltroAudienciasPace";
-import { insertInteressadoAndAssuntoOnProcessController } from "../modules/InsertInteressadoAndAssuntoOnProcess";
 import { insertTarefasController } from "../modules/InsertTarefas";
 import { getEspecieTarefaController } from "../modules/GetEspecieTarefa";
 import { getSetorResponsavelTarefaController } from "../modules/GetSetorResponsavelTarefa";
@@ -40,9 +39,6 @@ routerFiltroAudienciasPace.post("/pace/filtroAudienciasPace", async (req, res) =
     return filtroAudienciasPaceController.handle(req, res);
 });
 
-routerFiltroAudienciasPace.post("/insertInterassadoAndAssunto", async (req, res) => {
-    return insertInteressadoAndAssuntoOnProcessController.handle(req, res);
-});
 
 routerFiltroAudienciasPace.post("/insertTarefas", async (req, res) => {
     return insertTarefasController.handle(req, res);
