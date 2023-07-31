@@ -16,6 +16,7 @@ export class CreateTarefaLoteUseCase {
             
             //let response:Array<any> = []
             let listaTarefas:string = '';
+            let processosNaoEncontrados:Array<any> = []
             
 
             const listaProcessosJudiciais = data.listaProcessosJudiciais;
@@ -25,22 +26,27 @@ export class CreateTarefaLoteUseCase {
             for (const numeroProcessoJudicial of listaProcessosJudiciais) {
                 
                 const infoProcesso = await getPastaProcessoJudicialUseCase.execute(numeroProcessoJudicial, cookie);
-                const pasta_id = infoProcesso[0].id.toString();
-                const tarefa:TarefaDTO = new TarefaDTO();
-                const objTarefa = tarefa.execute(
-                    data.etiqueta,
-                    data.prazoInicio,
-                    data.prazoFim,
-                    Number(pasta_id),
-                    data.especieTarefa,
-                    Number(idSetorOrigemUser),
-                    data.setorResponsavel,
-                    data.usuarioResponsavel
-                )
-                if(numeroProcessoJudicial === listaProcessosJudiciais[listaProcessosJudiciais.length-1]){
-                    listaTarefas += objTarefa;
+                if(infoProcesso){
+                    const pasta_id = infoProcesso[0].id.toString();
+                    const tarefa:TarefaDTO = new TarefaDTO();
+                    const objTarefa = tarefa.execute(
+                        data.etiqueta,
+                        data.prazoInicio,
+                        data.prazoFim,
+                        Number(pasta_id),
+                        data.especieTarefa,
+                        Number(idSetorOrigemUser),
+                        data.setorResponsavel,
+                        data.usuarioResponsavel
+                    )
+                    if(numeroProcessoJudicial === listaProcessosJudiciais[listaProcessosJudiciais.length-1]){
+                        listaTarefas += objTarefa;
+                    }else{
+                        listaTarefas += `${objTarefa},`;
+                    }
                 }else{
-                    listaTarefas += `${objTarefa},`;
+                    processosNaoEncontrados.push(numeroProcessoJudicial);
+                    continue;
                 }
             }
 
