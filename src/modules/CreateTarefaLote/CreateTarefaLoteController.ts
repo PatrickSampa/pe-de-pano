@@ -8,8 +8,10 @@ export class CreateTarefaLoteController {
         const data: CreateTarefaLoteDTO = request.body;
         try {
             const result = await this.createTarefaLoteUseCase.execute(data);
+            console.log(result);
             response.status(200).json(result);
         } catch (error) {
+        
             return response.status(400).json({
                 message: error.message || "Unexpected error"
             });

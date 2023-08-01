@@ -9,10 +9,10 @@ import { RequestSapiens } from "../../pytonRequest/requestSapiens";
 
 export class CreateTarefaLoteUseCase {
     
-    async execute(data: CreateTarefaLoteDTO): Promise<Array<string>> {
+    async execute(data: CreateTarefaLoteDTO): Promise<Object> {
         return new Promise(async (resolve, reject) => {
             
-            const cookie:string = await loginUseCase.execute(data.login);
+            const cookie = await loginUseCase.execute(data.login);
             
             //let response:Array<any> = []
             let listaTarefas:string = '';
@@ -26,7 +26,7 @@ export class CreateTarefaLoteUseCase {
             for (const numeroProcessoJudicial of listaProcessosJudiciais) {
                 
                 const infoProcesso = await getPastaProcessoJudicialUseCase.execute(numeroProcessoJudicial, cookie);
-                if(infoProcesso){
+                if(infoProcesso.length > 0){
                     const pasta_id = infoProcesso[0].id.toString();
                     const tarefa:TarefaDTO = new TarefaDTO();
                     const objTarefa = tarefa.execute(
@@ -55,9 +55,18 @@ export class CreateTarefaLoteUseCase {
             console.log(payload);
             console.log('recebi a req do pace');
             
-            const response = (await RequestSapiens(cookie, payload))
+            let response = {};
+            await RequestSapiens(cookie, payload);
 
-            resolve(await response);
+            if(processosNaoEncontrados){
+                response= {
+                    message:"Processos nao existentes no sapiens",
+                    processosNaoEncontrados                    
+                };
+            }
+
+            resolve(response);
+            
         })
 
     }
