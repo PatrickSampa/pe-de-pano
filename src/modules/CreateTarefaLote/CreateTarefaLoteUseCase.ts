@@ -39,10 +39,10 @@ export class CreateTarefaLoteUseCase {
                         data.setorResponsavel,
                         data.usuarioResponsavel
                     )
-                    if(numeroProcessoJudicial === listaProcessosJudiciais[listaProcessosJudiciais.length-1]){
+                    if(numeroProcessoJudicial === listaProcessosJudiciais[0]){
                         listaTarefas += objTarefa;
                     }else{
-                        listaTarefas += `${objTarefa},`;
+                        listaTarefas += `,${objTarefa}`;
                     }
                 }else{
                     processosNaoEncontrados.push(numeroProcessoJudicial);
