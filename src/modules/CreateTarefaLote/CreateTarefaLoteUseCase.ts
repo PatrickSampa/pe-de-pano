@@ -23,29 +23,29 @@ export class CreateTarefaLoteUseCase {
             const usuario = await getUsuarioUseCase.execute(cookie);
             const idSetorOrigemUser:string = usuario[0].colaborador.lotacoes.find(lotacao => lotacao.principal === true)?.setor.id;
             
-            for (const numeroProcessoJudicial of listaProcessosJudiciais) {
+            for (const processoJudicial of listaProcessosJudiciais) {
                 
-                const infoProcesso = await getPastaProcessoJudicialUseCase.execute(numeroProcessoJudicial, cookie);
+                const infoProcesso = await getPastaProcessoJudicialUseCase.execute(processoJudicial.numeroProcesso, cookie);
                 if(infoProcesso.length > 0){
                     const pasta_id = infoProcesso[0].id.toString();
                     const tarefa:TarefaDTO = new TarefaDTO();
                     const objTarefa = tarefa.execute(
                         data.etiqueta,
-                        data.prazoInicio,
-                        data.prazoFim,
+                        processoJudicial.prazoInicio,
+                        processoJudicial.prazoFim,
                         Number(pasta_id),
                         data.especieTarefa,
                         Number(idSetorOrigemUser),
                         data.setorResponsavel,
                         data.usuarioResponsavel
                     )
-                    if(numeroProcessoJudicial === listaProcessosJudiciais[0]){
+                    if(processoJudicial === listaProcessosJudiciais[0]){
                         listaTarefas += objTarefa;
                     }else{
                         listaTarefas += `,${objTarefa}`;
                     }
                 }else{
-                    processosNaoEncontrados.push(numeroProcessoJudicial);
+                    processosNaoEncontrados.push(processoJudicial);
                     continue;
                 }
             }
@@ -58,7 +58,7 @@ export class CreateTarefaLoteUseCase {
             let response = {};
             await RequestSapiens(cookie, payload);
 
-            if(processosNaoEncontrados){
+            if(processosNaoEncontrados.length > 0){
                 response= {
                     message:"Processos nao existentes no sapiens",
                     processosNaoEncontrados                    

@@ -1,4 +1,5 @@
 import { ILoginDTO } from "./LoginDTO";
+import { IProcessoJudicial } from "./ProcessoJudicialDTO";
 
 export class CreateTarefaLoteDTO {
     login: ILoginDTO;
@@ -6,8 +7,5 @@ export class CreateTarefaLoteDTO {
     especieTarefa:number;
     setorResponsavel:number;
     usuarioResponsavel:number;
-    setorOrigem:number;
-    prazoInicio?:string;
-    prazoFim?:string;
-    listaProcessosJudiciais:string[];
+    listaProcessosJudiciais:IProcessoJudicial[];
 }
