@@ -9,7 +9,7 @@ import { RequestSapiens } from "../../pytonRequest/requestSapiens";
 
 export class CreateTarefaLoteUseCase {
     
-    async execute(data: CreateTarefaLoteDTO): Promise<Object> {
+    async execute(data: CreateTarefaLoteDTO): Promise<Object>{
         return new Promise(async (resolve, reject) => {
             
             const cookie = await loginUseCase.execute(data.login);
@@ -56,7 +56,11 @@ export class CreateTarefaLoteUseCase {
             console.log('recebi a req do pace');
             
             let response = {};
-            await RequestSapiens(cookie, payload);
+            const responseSapiens  = await RequestSapiens(cookie, payload);
+            
+            if(!responseSapiens){
+                throw new Error('Erro de conexão com o sapiens');
+            }
 
             if(processosNaoEncontrados.length > 0){
                 response= {
