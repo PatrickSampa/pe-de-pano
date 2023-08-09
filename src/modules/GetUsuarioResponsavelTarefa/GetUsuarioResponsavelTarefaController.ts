@@ -8,7 +8,6 @@ export class GetUsuarioResponsavelTarefaController {
         const data:GetUsuarioResponsavelTarefaDTO = request.body;
         try {
             const result = await this.getUsuarioResponsavelTarefaUseCase.execute(data);
-            console.log(result);
             response.status(200).json(result);
         } catch (error) {
             return response.status(400).json({

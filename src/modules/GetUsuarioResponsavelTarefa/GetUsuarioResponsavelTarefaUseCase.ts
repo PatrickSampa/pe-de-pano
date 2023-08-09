@@ -1,23 +1,28 @@
 import { GetUsuarioResponsavelTarefaDTO } from "../../DTO/GetUsuarioResponsavelTarefaDTO ";
 import { RequestSapiens } from "../../pytonRequest/requestSapiens";
 import { RequestGetUsuarioResponsavelTarefa } from "../../sapiensOperations/resquest/RequestGetUsuarioResponsavelTarefa";
+import { getUsuarioUseCase } from "../GetUsuario";
 import { loginUseCase } from "../LoginUsuario";
 
 export class GetUsuarioResponsavelTarefaUseCase {
-    constructor(private requestGetUsuarioResponsavel:RequestGetUsuarioResponsavelTarefa){};
+    constructor(private requestGetUsuarioResponsavel:RequestGetUsuarioResponsavelTarefa, private requestGetAfastamento){};
     async execute(data: GetUsuarioResponsavelTarefaDTO): Promise<any> {
 
         let response;
 
-        const getUsuario = await this.requestGetUsuarioResponsavel.execute(data.query, data.setorResponsavel);
-
-        console.log(getUsuario);
+        const getUsuarioResponsavel = await this.requestGetUsuarioResponsavel.execute(data.query, data.setorResponsavel);
 
         const cookie:string = await loginUseCase.execute(data.login);
         
-        const usuario = (await RequestSapiens(cookie, getUsuario));
+        const usuarioResponsavel = (await RequestSapiens(cookie, getUsuarioResponsavel));
 
-        response = usuario[0];
+        // const usuario = await getUsuarioUseCase.execute(cookie);
+
+        // const id_colaborador = usuario[0].colaborador.id;
+
+        // const afastamento_usuario = await this.requestGetAfastamento.execute(id_colaborador);
+
+        response = usuarioResponsavel[0];
         
         return response;
     }

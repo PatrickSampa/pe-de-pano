@@ -68,7 +68,7 @@ export class CreateTarefaLoteUseCase {
                     processosNaoEncontrados                    
                 };
             }
-
+            
             resolve(response);
             
         })
