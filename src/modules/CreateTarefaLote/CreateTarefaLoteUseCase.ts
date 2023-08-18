@@ -23,7 +23,7 @@ export class CreateTarefaLoteUseCase {
             const usuario = await getUsuarioUseCase.execute(cookie);
             const idSetorOrigemUser:string = usuario[0].colaborador.lotacoes.find(lotacao => lotacao.principal === true)?.setor.id;
             
-            for (const processoJudicial of listaProcessosJudiciais) {
+            for await (const processoJudicial of listaProcessosJudiciais) {
                 
                 const infoProcesso = await getPastaProcessoJudicialUseCase.execute(processoJudicial.numeroProcesso, cookie);
                 if(infoProcesso.length > 0){
