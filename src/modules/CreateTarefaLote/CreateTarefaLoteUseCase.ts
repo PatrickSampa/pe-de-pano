@@ -11,7 +11,7 @@ export class CreateTarefaLoteUseCase {
     
     async execute(data: CreateTarefaLoteDTO): Promise<Object>{
         return new Promise(async (resolve, reject) => {
-            try{
+            
                 const cookie = await loginUseCase.execute(data.login);
                 
                 //let response:Array<any> = []
@@ -20,8 +20,9 @@ export class CreateTarefaLoteUseCase {
                 
     
                 const listaProcessosJudiciais = data.listaProcessosJudiciais;
-                const usuario = await getUsuarioUseCase.execute(cookie);
-                const idSetorOrigemUser:string = usuario[0].colaborador.lotacoes.find(lotacao => lotacao.principal === true)?.setor.id;
+                // const usuario = await getUsuarioUseCase.execute(cookie);
+                // const idSetorOrigemUser:string = usuario[0].colaborador.lotacoes.find(lotacao => lotacao.principal === true)?.setor.id;
+                const idSetorOrigemUser = '41430';
                 
                 for await (const processoJudicial of listaProcessosJudiciais) {
                     
@@ -59,7 +60,7 @@ export class CreateTarefaLoteUseCase {
                 const responseSapiens  = await RequestSapiens(cookie, payload);
                 
                 if(!responseSapiens){
-                    throw new Error('Erro de conexão com o sapiens');
+                    reject(new Error('erro de conexão com o sapiens'))
                 }
     
                 if(processosNaoEncontrados.length > 0){
@@ -70,9 +71,6 @@ export class CreateTarefaLoteUseCase {
                 }
                 
                 resolve(response);
-            }catch(e){
-                throw new Error('Erro de comunicação com o sapiens: ' + e.message);
-            }
             
         })
 
