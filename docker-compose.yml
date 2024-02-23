@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: patricksampa/visao-api:1.0.0
+    image: patricksampa/pacevisao:1.0.0
     restart: always
     hostname: visao-{{.Task.Slot}}
     networks:
