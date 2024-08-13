@@ -20,9 +20,8 @@ export class CreateTarefaLoteUseCase {
                 
     
                 const listaProcessosJudiciais = data.listaProcessosJudiciais;
-                // const usuario = await getUsuarioUseCase.execute(cookie);
-                // const idSetorOrigemUser:string = usuario[0].colaborador.lotacoes.find(lotacao => lotacao.principal === true)?.setor.id;
-                const idSetorOrigemUser = '41430';
+                const usuario = await getUsuarioUseCase.execute(cookie);
+                const idSetorOrigemUser:string = usuario[0].colaborador.lotacoes.find(lotacao => lotacao.principal === true)?.setor.id;
                 
                 for await (const processoJudicial of listaProcessosJudiciais) {
                     
@@ -58,7 +57,7 @@ export class CreateTarefaLoteUseCase {
                 
                 let response = {};
                 const responseSapiens  = await RequestSapiens(cookie, payload);
-                
+                console.log(responseSapiens);
                 if(!responseSapiens){
                     reject(new Error('erro de conexão com o sapiens'))
                 }
